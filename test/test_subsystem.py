@@ -116,3 +116,9 @@ def test_fully_connected(s):
     assert s._fully_connected((0, 1), (0, 2))
     assert s._fully_connected((1, 2), (1, 2))
     assert s._fully_connected((0, 1, 2), (0, 1, 2))
+
+
+def test_is_cut(s):
+    assert s.is_cut() is False
+    s = Subsystem(s.network, s.state, s.node_indices, cut=Cut((0,), (1, 2)))
+    assert s.is_cut() is True
